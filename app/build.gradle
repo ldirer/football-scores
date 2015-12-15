@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+ext.extProgram = new Properties()
+extProgram.load(file('app.properties').newDataInputStream())
 
 android {
     compileSdkVersion 21
@@ -12,9 +14,14 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            // Separate debug config without proguard (apparently messes with AS debugger).
+            resValue "string", "api_key", extProgram.getProperty("API_KEY")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "api_key", extProgram.getProperty("API_KEY")
         }
     }
 }
