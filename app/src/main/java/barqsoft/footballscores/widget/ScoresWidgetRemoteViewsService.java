@@ -1,6 +1,7 @@
 package barqsoft.footballscores.widget;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -42,12 +43,23 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
 
     private final String LOG_TAG = ScoresWidgetRemoteViewsService.class.getSimpleName();
 
+
+
+
+
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public class ScoresRemoteViewsFactory implements RemoteViewsFactory {
 
         private final String LOG_TAG = ScoresRemoteViewsFactory.class.getSimpleName();
 
         private Cursor mData;
+        private Context mContext;
+
+        public ScoresRemoteViewsFactory(Context context) {
+            super();
+            mContext = context;
+        }
 
         @Override
         public void onCreate() {
@@ -107,8 +119,8 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             views.setTextViewText(R.id.away_name, away_name);
             views.setTextViewText(R.id.score_textview, Utilies.getScores(home_goals, away_goals));
             views.setTextViewText(R.id.data_textview, data_textview);
-            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(home_name));
-            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(away_name));
+            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(home_name, mContext));
+            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(away_name, mContext));
             return views;
         }
 
@@ -132,8 +144,9 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             return false;
         }
     }
+
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new ScoresRemoteViewsFactory();
+        return new ScoresRemoteViewsFactory(this);
     }
 }
