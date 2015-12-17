@@ -38,7 +38,7 @@
         <!--Widget-->
         <receiver
             android:name=".widget.ScoresWidgetProvider"
-            android:label="Football Scores Widget"
+            android:label="@string/widget_title"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             >
             <intent-filter>
@@ -49,6 +49,10 @@
                 android:resource="@xml/widget_info"
                 />
         </receiver>
+        <service android:name=".widget.ScoresWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            />
+
     </application>
 
 </manifest>

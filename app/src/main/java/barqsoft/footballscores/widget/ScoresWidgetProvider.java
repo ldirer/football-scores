@@ -3,6 +3,7 @@ package barqsoft.footballscores.widget;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -44,36 +45,13 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Log.d(LOG_TAG, "in onUpdate");
         for (int appWidgetId : appWidgetIds) {
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_list_item);
-
-//            Uri scoreWithDateUri = DatabaseContract.scores_table.buildScoreWithDate();
-            Uri scoreWithDateUri = DatabaseContract.BASE_CONTENT_URI;
-            Cursor data = context.getContentResolver().query(scoreWithDateUri, SCORES_COLUMNS, null, new String[]{"2015-12-15%"}, null);
-
-            if(data == null || !data.moveToFirst()) {
-                Log.d(LOG_TAG, "no data in cursor for widget!");
-                return;
-            }
-
-            String home_name = data.getString(INDEX_HOME_COL);
-            String away_name = data.getString(INDEX_AWAY_COL);
-            int home_goals = data.getInt(INDEX_HOME_GOALS_COL);
-            int away_goals = data.getInt(INDEX_AWAY_GOALS_COL);
-            String data_textview = data.getString(INDEX_DATE_COL);
-
-
-            views.setTextViewText(R.id.home_name, home_name);
-            views.setTextViewText(R.id.away_name, away_name);
-            views.setTextViewText(R.id.score_textview, Utilies.getScores(home_goals, away_goals));
-            views.setTextViewText(R.id.data_textview, data_textview);
-            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(home_name));
-            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(away_name));
-
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+            views.setRemoteAdapter(R.id.widget_list, new Intent(context, ScoresWidgetRemoteViewsService.class));
 
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
-            data.close();
         }
     }
 }

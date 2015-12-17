@@ -5,9 +5,12 @@
     <dimen name="list_horizonal_matgin">2dp</dimen>
     <dimen name="share_button_margin">150dp</dimen>
     <dimen name="TeamNames">17sp</dimen>
+    <dimen name="widget_team_names">10sp</dimen>
     <dimen name="Score">30sp</dimen>
+    <dimen name="widget_score">15sp</dimen>
     <dimen name="League">15sp</dimen>
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="min_widget_width">40dp</dimen>
     <dimen name="min_widget_height">40dp</dimen>
+    <dimen name="widget_date_size">10sp</dimen>
 </resources>

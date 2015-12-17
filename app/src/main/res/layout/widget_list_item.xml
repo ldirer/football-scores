@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    >
-<LinearLayout
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="5dp"
     android:background="@drawable/list_item"
-    android:theme="@style/AppTheme"
-    >
+    android:theme="@style/AppTheme">
     <!--android:background="@color/background_material_light"-->
     <LinearLayout
         android:layout_width="0dp"
@@ -28,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="@dimen/TeamNames"
+            android:textSize="@dimen/widget_team_names"
             android:gravity="center"
             android:text="@string/test_text"
             tools:text="Arsenal"
@@ -47,7 +42,7 @@
             tools:text="5-2"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/Score"
+            android:textSize="@dimen/widget_score"
             android:id="@+id/score_textview"/>
         <TextView
             android:layout_width="wrap_content"
@@ -57,6 +52,7 @@
             tools:text="15h00"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="@dimen/widget_date_size"
             android:id="@+id/data_textview"/>
 
     </LinearLayout>
@@ -78,8 +74,7 @@
             android:gravity="center"
             android:text="@string/test_text"
             tools:text="Tottenham hotspur"
-            android:textSize="@dimen/TeamNames"
+            android:textSize="@dimen/widget_team_names"
             android:id="@+id/away_name"/>
     </LinearLayout>
 </LinearLayout>
-</FrameLayout>

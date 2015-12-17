@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     android:padding="@dimen/widget_margin"
     >
-
-    <ListView
-        android:id="@+id/widget"
+    <StackView
+        android:id="@+id/widget_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:listitem="@layout/widget_list_item"
         />
 
 </FrameLayout>
