@@ -26,19 +26,4 @@ public class ViewHolder
         home_crest = (ImageView) view.findViewById(R.id.home_crest);
         away_crest = (ImageView) view.findViewById(R.id.away_crest);
     }
-
-    /**
-     * Constructor used for a widget list item, we just populate the data in the RemoteViews.
-     * @param views
-     */
-
-    public ViewHolder(RemoteViews views)
-    {
-        views.setTextViewText(R.id.home_name, "Arsenal");
-        views.setTextViewText(R.id.away_name, "Tottenham hotspur");
-        views.setTextViewText(R.id.score_textview, "5 - 2");
-        views.setTextViewText(R.id.data_textview, "15h00");
-        views.setImageViewResource(R.id.home_crest, R.drawable.arsenal);
-        views.setImageViewResource(R.id.away_crest, R.drawable.tottenham_hotspur);
-    }
 }

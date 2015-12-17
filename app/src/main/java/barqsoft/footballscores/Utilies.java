@@ -1,5 +1,7 @@
 package barqsoft.footballscores;
 
+import android.util.Log;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -10,6 +12,8 @@ public class Utilies
     public static final int CHAMPIONS_LEAGUE = 362;
     public static final int PRIMERA_DIVISION = 358;
     public static final int BUNDESLIGA = 351;
+    private static final String LOG_TAG = Utilies.class.getSimpleName();
+
     public static String getLeague(int league_num)
     {
         switch (league_num)
@@ -53,10 +57,14 @@ public class Utilies
         }
     }
 
+    /**
+     * Return a friendly String to display score.
+     */
     public static String getScores(int home_goals,int awaygoals)
     {
         if(home_goals < 0 || awaygoals < 0)
         {
+            Log.d(LOG_TAG, "Negative number of goals: that's weird.");
             return " - ";
         }
         else
