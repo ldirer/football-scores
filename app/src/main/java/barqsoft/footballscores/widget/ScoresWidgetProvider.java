@@ -24,6 +24,7 @@ import barqsoft.footballscores.Utilies;
 import barqsoft.footballscores.ViewHolder;
 import barqsoft.footballscores.service.myFetchService;
 
+// TODO: before sub, add preview image for widget.
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ScoresWidgetProvider extends AppWidgetProvider {
 

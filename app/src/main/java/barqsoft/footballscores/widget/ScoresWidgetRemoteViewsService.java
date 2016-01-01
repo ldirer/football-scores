@@ -83,8 +83,8 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             final long identityToken = Binder.clearCallingIdentity();
 
             Uri scoreWithDateIntervalUri = DatabaseContract.scores_table.buildScoreWithDateInterval();
-            mData = getContentResolver().query(scoreWithDateIntervalUri, SCORES_COLUMNS, null, Utilies.getFormattedDatesForDatabase(2),
-                    null);
+            mData = getContentResolver().query(scoreWithDateIntervalUri, SCORES_COLUMNS, null,
+                    Utilies.getFormattedDatesForDatabase(2), DatabaseContract.scores_table.DATE_COL + " DESC");
             Binder.restoreCallingIdentity(identityToken);
         }
 

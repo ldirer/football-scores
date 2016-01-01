@@ -3,6 +3,7 @@ package barqsoft.footballscores;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +16,28 @@ import android.widget.TextView;
  */
 public class scoresAdapter extends CursorAdapter
 {
+    public static final int COL_MATCH_ID = 0;
+    public static final int COL_DATE = 1;
+    public static final int COL_MATCHTIME = 2;
     public static final int COL_HOME = 3;
     public static final int COL_AWAY = 4;
+    public static final int COL_LEAGUE = 5;
     public static final int COL_HOME_GOALS = 6;
     public static final int COL_AWAY_GOALS = 7;
-    public static final int COL_DATE = 1;
-    public static final int COL_LEAGUE = 5;
-    public static final int COL_MATCHDAY = 9;
-    public static final int COL_ID = 8;
-    public static final int COL_MATCHTIME = 2;
+    public static final int COL_MATCHDAY = 8;
+    public static final int COL_ID = 9;
+    public static final String[] MATCH_PROJECTION_COLUMNS = {
+            DatabaseContract.scores_table.MATCH_ID,
+            DatabaseContract.scores_table.DATE_COL,
+            DatabaseContract.scores_table.TIME_COL,
+            DatabaseContract.scores_table.HOME_COL,
+            DatabaseContract.scores_table.AWAY_COL,
+            DatabaseContract.scores_table.LEAGUE_COL,
+            DatabaseContract.scores_table.HOME_GOALS_COL,
+            DatabaseContract.scores_table.AWAY_GOALS_COL,
+            DatabaseContract.scores_table.MATCH_DAY,
+            DatabaseContract.scores_table._ID
+    };
     public double detail_match_id = 0;
     private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
     public scoresAdapter(Context context,Cursor cursor,int flags)
@@ -49,7 +63,7 @@ public class scoresAdapter extends CursorAdapter
         mHolder.away_name.setText(cursor.getString(COL_AWAY));
         mHolder.date.setText(cursor.getString(COL_MATCHTIME));
         mHolder.score.setText(Utilies.getScores(cursor.getInt(COL_HOME_GOALS),cursor.getInt(COL_AWAY_GOALS)));
-        mHolder.match_id = cursor.getDouble(COL_ID);
+        mHolder.match_id = cursor.getDouble(COL_MATCH_ID);
         mHolder.home_crest.setImageResource(Utilies.getTeamCrestByTeamName(
                 cursor.getString(COL_HOME), context));
         mHolder.away_crest.setImageResource(Utilies.getTeamCrestByTeamName(
@@ -99,4 +113,15 @@ public class scoresAdapter extends CursorAdapter
         return shareIntent;
     }
 
+    /**
+     *
+     * @param position
+     * @return the match id if the position is within cursor range, -1 otherwise.
+     */
+    public int getItemMatchId(int position) {
+        if(mCursor.moveToPosition(position)) {
+            return mCursor.getInt(COL_MATCH_ID);
+        }
+        return -1;
+    }
 }

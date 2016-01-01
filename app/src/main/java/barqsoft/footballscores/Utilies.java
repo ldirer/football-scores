@@ -102,6 +102,7 @@ public class Utilies {
             case "Stoke City FC":
                 return R.drawable.stoke_city;
             default:
+                // TODO: Before sub, add all the internet-fetched logos.
                 // DO NOT include the image extension in the drawable string here!
                 int resourceId = context.getResources().getIdentifier(teamname.toLowerCase().replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
                 return resourceId == 0 ? R.drawable.no_icon : resourceId;
