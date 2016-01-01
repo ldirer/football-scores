@@ -1,80 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="5dp"
+    android:layout_height="match_parent"
     android:background="@drawable/list_item"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
     android:theme="@style/AppTheme">
     <!--android:background="@color/background_material_light"-->
+    <TextView
+        android:id="@+id/home_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/test_text"
+        android:textSize="@dimen/widget_team_names"
+        tools:drawableTop="@drawable/arsenal"
+        tools:text="Arsenal" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:src="@drawable/arsenal"
-            android:id="@+id/home_crest"/>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/widget_team_names"
-            android:gravity="center"
-            android:text="@string/test_text"
-            tools:text="Arsenal"
-            android:id="@+id/home_name"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/score_textview"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/test_text"
-            tools:text="5-2"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
+            android:text="@string/test_text"
             android:textSize="@dimen/widget_score"
-            android:id="@+id/score_textview"/>
+            tools:text="5-2" />
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/data_textview"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/test_text"
-            tools:text="15h00"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
+            android:text="@string/test_text"
             android:textSize="@dimen/widget_date_size"
-            android:id="@+id/data_textview"/>
+            tools:text="15h00" />
 
     </LinearLayout>
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/away_name"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:src="@drawable/tottenham_hotspur"
-            android:id="@+id/away_crest"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/test_text"
-            tools:text="Tottenham hotspur"
-            android:textSize="@dimen/widget_team_names"
-            android:id="@+id/away_name"/>
-    </LinearLayout>
+        android:gravity="center"
+        android:text="@string/test_text"
+        android:textSize="@dimen/widget_team_names"
+        tools:drawableTop="@drawable/tottenham_hotspur"
+        tools:text="Tottenham hotspur" />
 </LinearLayout>

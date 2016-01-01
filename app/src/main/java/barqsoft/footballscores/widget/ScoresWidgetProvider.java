@@ -24,29 +24,6 @@ import barqsoft.footballscores.service.myFetchService;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ScoresWidgetProvider extends AppWidgetProvider {
 
-    private final static String[] SCORES_COLUMNS = {
-            DatabaseContract.scores_table.LEAGUE_COL,
-            DatabaseContract.scores_table.DATE_COL,
-            DatabaseContract.scores_table.TIME_COL,
-            DatabaseContract.scores_table.HOME_COL,
-            DatabaseContract.scores_table.AWAY_COL,
-            DatabaseContract.scores_table.HOME_GOALS_COL,
-            DatabaseContract.scores_table.AWAY_GOALS_COL,
-            DatabaseContract.scores_table.MATCH_ID,
-            DatabaseContract.scores_table.MATCH_DAY
-    };
-
-
-    private final static int INDEX_LEAGUE_COL = 0;
-    private final static int INDEX_DATE_COL = 1;
-    private final static int INDEX_TIME_COL = 2;
-    private final static int INDEX_HOME_COL = 3;
-    private final static int INDEX_AWAY_COL = 4;
-    private final static int INDEX_HOME_GOALS_COL = 5;
-    private final static int INDEX_AWAY_GOALS_COL = 6;
-    private final static int INDEX_MATCH_ID = 7;
-    private final static int INDEX_MATCH_DAY = 8;
-
     private static final String LOG_TAG = ScoresWidgetProvider.class.getSimpleName();
 
     @Override

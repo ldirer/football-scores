@@ -119,8 +119,10 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             views.setTextViewText(R.id.away_name, away_name);
             views.setTextViewText(R.id.score_textview, Utilies.getScores(home_goals, away_goals));
             views.setTextViewText(R.id.data_textview, data_textview);
-            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(home_name, mContext));
-            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(away_name, mContext));
+            views.setTextViewCompoundDrawables(R.id.home_name, 0, 0, 0, Utilies.getTeamCrestByTeamName(home_name, mContext));
+            views.setTextViewCompoundDrawables(R.id.away_name, 0, 0, 0, Utilies.getTeamCrestByTeamName(away_name, mContext));
+//            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(home_name, mContext));
+//            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(away_name, mContext));
             return views;
         }
 

@@ -1,7 +1,6 @@
 package barqsoft.footballscores;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 
 /**
@@ -14,6 +13,8 @@ public class Utilies {
     public static final int PRIMERA_DIVISION = 358;
     public static final int BUNDESLIGA = 351;
     private static final String LOG_TAG = Utilies.class.getSimpleName();
+//    private static final Logger teamCrestLogger = Logger.getLogger("barqsoft.footballscores.utilities.teamcrests");
+
 
     public static String getLeague(int league_num) {
         switch (league_num) {
@@ -63,6 +64,15 @@ public class Utilies {
     }
 
     public static int getTeamCrestByTeamName(String teamname, Context context) {
+        Log.d("getTeamCrestByTeamName", teamname);
+        // This does not make sense! I would be creating a log file on the device!...
+//        FileHandler teamCrestFileHandler = null;
+//        try {
+//            teamCrestFileHandler = new FileHandler("logTeamCrests");
+//        } catch (IOException e) {
+//            Log.d(LOG_TAG, e.getMessage());
+//        }
+//        teamCrestLogger.addHandler(teamCrestFileHandler);
         if (teamname == null) {
             return R.drawable.no_icon;
         }
