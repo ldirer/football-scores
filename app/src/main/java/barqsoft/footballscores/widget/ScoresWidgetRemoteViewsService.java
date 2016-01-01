@@ -18,6 +18,9 @@ import barqsoft.footballscores.Utilies;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
 
+    public static final String EXTRA_KEY_MATCH_ID = "matchId";
+    public static final String EXTRA_KEY_MATCH_DATE = "matchDate";
+
     private final static String[] SCORES_COLUMNS = {
             DatabaseContract.scores_table.LEAGUE_COL,
             DatabaseContract.scores_table.DATE_COL,
@@ -79,9 +82,9 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             // that calls use our process and permission
             final long identityToken = Binder.clearCallingIdentity();
 
-//            Uri scoreWithDateUri = DatabaseContract.scores_table.buildScoreWithDate();
-            Uri scoreWithDateUri = DatabaseContract.BASE_CONTENT_URI;
-            mData = getContentResolver().query(scoreWithDateUri, SCORES_COLUMNS, null, new String[]{"2015-12-15%"}, null);
+            Uri scoreWithDateIntervalUri = DatabaseContract.scores_table.buildScoreWithDateInterval();
+            mData = getContentResolver().query(scoreWithDateIntervalUri, SCORES_COLUMNS, null, Utilies.getFormattedDatesForDatabase(2),
+                    null);
             Binder.restoreCallingIdentity(identityToken);
         }
 
@@ -109,6 +112,8 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             }
             RemoteViews views = new RemoteViews(getPackageName(), R.layout.widget_list_item);
 
+            int matchId = mData.getInt(INDEX_MATCH_ID);
+
             String home_name = mData.getString(INDEX_HOME_COL);
             String away_name = mData.getString(INDEX_AWAY_COL);
             int home_goals = mData.getInt(INDEX_HOME_GOALS_COL);
@@ -123,6 +128,13 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
             views.setTextViewCompoundDrawables(R.id.away_name, 0, 0, 0, Utilies.getTeamCrestByTeamName(away_name, mContext));
 //            views.setImageViewResource(R.id.home_crest, Utilies.getTeamCrestByTeamName(home_name, mContext));
 //            views.setImageViewResource(R.id.away_crest, Utilies.getTeamCrestByTeamName(away_name, mContext));
+
+            Intent intent = new Intent();
+//            intent.setData(DatabaseContract.scores_table.buildScoreWithId());
+            intent.putExtra(EXTRA_KEY_MATCH_ID, matchId);
+            intent.putExtra(EXTRA_KEY_MATCH_DATE, data_textview);
+            views.setOnClickFillInIntent(R.id.widget_list_item, intent);
+
             return views;
         }
 

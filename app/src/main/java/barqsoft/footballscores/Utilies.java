@@ -3,6 +3,9 @@ package barqsoft.footballscores;
 import android.content.Context;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -103,5 +106,23 @@ public class Utilies {
                 int resourceId = context.getResources().getIdentifier(teamname.toLowerCase().replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
                 return resourceId == 0 ? R.drawable.no_icon : resourceId;
         }
+    }
+
+    /**
+     * Used to get a 2-length array that can be passed as selectionArgs to the content provider for a 'between dates' query.
+     *
+     * @param dateSpan
+     * @return a string array with dates today - dateSpan and today + dateSpan.
+     */
+    public static String[] getFormattedDatesForDatabase(int dateSpan) {
+        String[] formattedDates = new String[2];
+        for (int i = 0;i < 2;i+=1)
+        {
+            Date fragmentdate = new Date(System.currentTimeMillis()+((i * 2 * dateSpan - dateSpan)*86400000));
+            SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+            formattedDates[i] = mformat.format(fragmentdate);
+        }
+        Log.d(LOG_TAG, "formattedDates: " + formattedDates.toString());
+        return formattedDates;
     }
 }

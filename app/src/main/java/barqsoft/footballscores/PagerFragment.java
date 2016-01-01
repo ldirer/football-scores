@@ -41,6 +41,27 @@ public class PagerFragment extends Fragment
         mPagerHandler.setCurrentItem(MainActivity.current_fragment);
         return rootView;
     }
+
+    /**
+     * Useful when the main activity is launched with extras with a match identifier (e.g. from a widget).
+     * It allows opening the right tab for the user to see the relevant game.
+     * @param date
+     * @return The index of the page (tab) a match with the given date will be on.
+     * -1 if the date is not within the range of dates covered by the pages.
+     */
+    public static int getPageIndex(String date) {
+        for (int i = 0;i < NUM_PAGES;i++)
+        {
+            Date fragmentdate = new Date(System.currentTimeMillis()+((i-2)*86400000));
+            SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+            if (mformat.format(fragmentdate).equals(date)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     private class myPageAdapter extends FragmentStatePagerAdapter
     {
         @Override
