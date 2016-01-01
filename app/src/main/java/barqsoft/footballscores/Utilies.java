@@ -5,36 +5,36 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
+import barqsoft.footballscores.service.myFetchService;
 
 /**
  * Created by yehya khaled on 3/3/2015.
  */
 public class Utilies {
-    public static final int SERIE_A = 357;
-    public static final int PREMIER_LEGAUE = 354;
-    public static final int CHAMPIONS_LEAGUE = 362;
-    public static final int PRIMERA_DIVISION = 358;
-    public static final int BUNDESLIGA = 351;
+    public static final Integer SERIE_A = Integer.parseInt(myFetchService.SERIE_A);
+    public static final Integer PREMIER_LEAGUE = Integer.parseInt(myFetchService.PREMIER_LEAGUE);
+    // TODO: Wth? Where is Champions league in myFetchService??
+    public static final Integer CHAMPIONS_LEAGUE = 0; // Integer.parseInt(myFetchService.);
+    public static final Integer PRIMERA_DIVISION = Integer.parseInt(myFetchService.PRIMERA_DIVISION);
+    public static final Integer BUNDESLIGA = Integer.parseInt(myFetchService.BUNDESLIGA1);
     private static final String LOG_TAG = Utilies.class.getSimpleName();
 //    private static final Logger teamCrestLogger = Logger.getLogger("barqsoft.footballscores.utilities.teamcrests");
-
+    private static final HashMap<Integer, String> leagueCodeToName = new HashMap<>();
+    static {
+        // TODO: extract strings to resources?
+        leagueCodeToName.put(SERIE_A, "Seria A");
+        leagueCodeToName.put(PREMIER_LEAGUE, "Premier League");
+        leagueCodeToName.put(CHAMPIONS_LEAGUE, "UEFA Champions League");
+        leagueCodeToName.put(PRIMERA_DIVISION, "Primera Division");
+        leagueCodeToName.put(BUNDESLIGA, "Bundesliga");
+    }
 
     public static String getLeague(int league_num) {
-        switch (league_num) {
-            case SERIE_A:
-                return "Seria A";
-            case PREMIER_LEGAUE:
-                return "Premier League";
-            case CHAMPIONS_LEAGUE:
-                return "UEFA Champions League";
-            case PRIMERA_DIVISION:
-                return "Primera Division";
-            case BUNDESLIGA:
-                return "Bundesliga";
-            default:
-                return "Not known League Please report";
+        String leagueName = leagueCodeToName.get(league_num);
+        return leagueName == null ? "Not known League Please report" : leagueName;
         }
-    }
 
     public static String getMatchDay(int match_day, int league_num) {
         if (league_num == CHAMPIONS_LEAGUE) {
