@@ -38,4 +38,9 @@
     <string name="share_button_content_description">Share this result</string>
     <string name="widget_title">Football Scores Widget</string>
     <string name="empty_match_list">Quiet day for the football world: no games found!</string>
+    <string name="serie_a_friendly">Seria A</string>
+    <string name="premier_league_friendly">Premier League</string>
+    <string name="champions_league_friendly">UEFA Champions League</string>
+    <string name="primera_division_friendly">Primera Division</string>
+    <string name="bundesliga_friendly">Bundesliga</string>
 </resources>

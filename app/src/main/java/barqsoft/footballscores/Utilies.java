@@ -20,18 +20,19 @@ public class Utilies {
     public static final Integer PRIMERA_DIVISION = Integer.parseInt(myFetchService.PRIMERA_DIVISION);
     public static final Integer BUNDESLIGA = Integer.parseInt(myFetchService.BUNDESLIGA1);
     private static final String LOG_TAG = Utilies.class.getSimpleName();
-//    private static final Logger teamCrestLogger = Logger.getLogger("barqsoft.footballscores.utilities.teamcrests");
-    private static final HashMap<Integer, String> leagueCodeToName = new HashMap<>();
-    static {
-        // TODO: extract strings to resources?
-        leagueCodeToName.put(SERIE_A, "Seria A");
-        leagueCodeToName.put(PREMIER_LEAGUE, "Premier League");
-        leagueCodeToName.put(CHAMPIONS_LEAGUE, "UEFA Champions League");
-        leagueCodeToName.put(PRIMERA_DIVISION, "Primera Division");
-        leagueCodeToName.put(BUNDESLIGA, "Bundesliga");
-    }
+    static final HashMap<Integer, String> leagueCodeToName = new HashMap<>();
+    // Somewhat lame way to initialize the league-to-name map just once AND to use string resources.
+    private static boolean mapInitialized = false;
 
-    public static String getLeague(int league_num) {
+    public static String getLeague(Context context, int league_num) {
+        if(!mapInitialized) {
+            leagueCodeToName.put(SERIE_A, context.getString(R.string.serie_a_friendly));
+            leagueCodeToName.put(PREMIER_LEAGUE, context.getString(R.string.premier_league_friendly));
+            leagueCodeToName.put(CHAMPIONS_LEAGUE, context.getString(R.string.champions_league_friendly));
+            leagueCodeToName.put(PRIMERA_DIVISION, context.getString(R.string.primera_division_friendly));
+            leagueCodeToName.put(BUNDESLIGA, context.getString(R.string.bundesliga_friendly));
+            mapInitialized = true;
+        }
         String leagueName = leagueCodeToName.get(league_num);
         return leagueName == null ? "Not known League Please report" : leagueName;
         }

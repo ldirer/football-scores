@@ -23,7 +23,6 @@ import barqsoft.footballscores.service.myFetchService;
 public class MainScreenFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String LOG_TAG = MainScreenFragment.class.getSimpleName();
     private static final String SAVED_STATE_SELECTED_POSITION_KEY = "selectedPosition";
-    private String LOG_TAG_ID;
     public scoresAdapter mAdapter;
     public static final int SCORES_LOADER = 0;
     private String[] fragmentdate = new String[1];
@@ -33,20 +32,9 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     private ListView score_list;
 
     public MainScreenFragment() {
-//        LOG_TAG_ID = "Fragment for tab unknown - ";
     }
 
 
-    // TODO: clean up before submission.
-//    /**
-//     * For debugging purposes, to know which tab matches that fragment
-//     * @param id
-//     */
-//    public MainScreenFragment(int id)
-//    {
-//        LOG_TAG_ID = String.format("Fragment for tab %d - ", id);
-//        Log.d(LOG_TAG, LOG_TAG_ID + "CREATED");
-//    }
 
     private void update_scores() {
         Intent service_start = new Intent(getActivity(), myFetchService.class);
@@ -55,7 +43,6 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
 
     public void setFragmentDate(String date) {
         fragmentdate[0] = date;
-        LOG_TAG_ID = "Fragment for tab " + date + " - ";
     }
 
     private int getAdapterItemPosition(long id) {
@@ -89,7 +76,6 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
                 MainActivity.selected_match_id = (int) selected.match_id;
                 mAdapter.notifyDataSetChanged();
                 mSelectedPosition = position;
-//                        Log.d(LOG_TAG, LOG_TAG_ID + String.format("in click listener, position: %d", position));
             }
         });
 
@@ -114,15 +100,6 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         Log.d(LOG_TAG, "in onLoadFinished");
-        //Log.v(FetchScoreTask.LOG_TAG,"loader finished");
-        //cursor.moveToFirst();
-        /*
-        while (!cursor.isAfterLast())
-        {
-            Log.v(FetchScoreTask.LOG_TAG,cursor.getString(1));
-            cursor.moveToNext();
-        }
-        */
 
         int i = 0;
         cursor.moveToFirst();
@@ -130,7 +107,6 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
             i++;
             cursor.moveToNext();
         }
-        //Log.v(FetchScoreTask.LOG_TAG,"Loader query: " + String.valueOf(i));
         mAdapter.swapCursor(cursor);
         if (0 != MainActivity.selected_match_id && !mScrolledAlready) {
             Log.d(LOG_TAG, "Going to enter getAdapterItemPosition");
@@ -150,7 +126,6 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-//        Log.d(LOG_TAG, LOG_TAG_ID + String.format("Saving state, selected position: %d", mSelectedPosition));
         outState.putInt(SAVED_STATE_SELECTED_POSITION_KEY, mSelectedPosition);
     }
 
