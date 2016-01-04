@@ -107,8 +107,11 @@ public class Utilies {
                 return R.drawable.stoke_city;
             default:
                 // TODO: Before sub, add all the internet-fetched logos.
+                // We remove non ascii characters to match the logos names.
+                // The names come from a quick and dirty python script that just removes non ascii characters.
+                String cleanTeamname = teamname.replaceAll("[^\\x00-\\x7F]", "");
                 // DO NOT include the image extension in the drawable string here!
-                int resourceId = context.getResources().getIdentifier(teamname.toLowerCase().replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
+                int resourceId = context.getResources().getIdentifier(cleanTeamname.toLowerCase().replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
                 return resourceId == 0 ? R.drawable.no_icon : resourceId;
         }
     }
