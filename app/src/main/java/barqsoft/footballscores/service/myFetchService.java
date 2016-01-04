@@ -35,6 +35,8 @@ public class myFetchService extends IntentService {
 
     // This set of league codes is for the 2015/2016 season. In fall of 2016, they will need to
     // be updated. Feel free to use the codes
+    // A more robust way to do it would be to build a 'soccerseason integer -> League name' map from the soccerseasons endpoint.
+    // http://api.football-data.org/alpha/soccerseasons/
     public static final String BUNDESLIGA1 = "394";
     public static final String BUNDESLIGA2 = "395";
     public static final String LIGUE1 = "396";
@@ -46,6 +48,7 @@ public class myFetchService extends IntentService {
     public static final String PRIMERA_LIGA = "402";
     public static final String Bundesliga3 = "403";
     public static final String EREDIVISIE = "404";
+    public static final String CHAMPIONS_LEAGUE = "405";
 
     public myFetchService() {
         super("myFetchService");
@@ -100,6 +103,7 @@ public class myFetchService extends IntentService {
                 return;
             }
             JSON_data = buffer.toString();
+            Log.d(LOG_TAG, JSON_data);
         } catch (Exception e) {
             Log.e(LOG_TAG, "Exception here" + e.getMessage());
         } finally {
@@ -186,7 +190,9 @@ public class myFetchService extends IntentService {
                         League.equals(SERIE_A) ||
                         League.equals(BUNDESLIGA1) ||
                         League.equals(BUNDESLIGA2) ||
-                        League.equals(PRIMERA_DIVISION)) {
+                        League.equals(PRIMERA_DIVISION) ||
+                        League.equals(LIGUE1) ||
+                        League.equals(CHAMPIONS_LEAGUE)) {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
                     match_id = match_id.replace(MATCH_LINK, "");

@@ -15,10 +15,11 @@ import barqsoft.footballscores.service.myFetchService;
 public class Utilies {
     public static final Integer SERIE_A = Integer.parseInt(myFetchService.SERIE_A);
     public static final Integer PREMIER_LEAGUE = Integer.parseInt(myFetchService.PREMIER_LEAGUE);
-    // TODO: Wth? Where is Champions league in myFetchService??
-    public static final Integer CHAMPIONS_LEAGUE = 0; // Integer.parseInt(myFetchService.);
+    public static final Integer CHAMPIONS_LEAGUE = Integer.parseInt(myFetchService.CHAMPIONS_LEAGUE);
     public static final Integer PRIMERA_DIVISION = Integer.parseInt(myFetchService.PRIMERA_DIVISION);
     public static final Integer BUNDESLIGA = Integer.parseInt(myFetchService.BUNDESLIGA1);
+    public static final Integer BUNDESLIGA2 = Integer.parseInt(myFetchService.BUNDESLIGA2);
+    public static final Integer LIGUE1 = Integer.parseInt(myFetchService.LIGUE1);
     private static final String LOG_TAG = Utilies.class.getSimpleName();
     static final HashMap<Integer, String> leagueCodeToName = new HashMap<>();
     // Somewhat lame way to initialize the league-to-name map just once AND to use string resources.
@@ -31,6 +32,8 @@ public class Utilies {
             leagueCodeToName.put(CHAMPIONS_LEAGUE, context.getString(R.string.champions_league_friendly));
             leagueCodeToName.put(PRIMERA_DIVISION, context.getString(R.string.primera_division_friendly));
             leagueCodeToName.put(BUNDESLIGA, context.getString(R.string.bundesliga_friendly));
+            leagueCodeToName.put(BUNDESLIGA2, context.getString(R.string.bundesliga_2_friendly));
+            leagueCodeToName.put(LIGUE1, context.getString(R.string.ligue_1_friendly));
             mapInitialized = true;
         }
         String leagueName = leagueCodeToName.get(league_num);

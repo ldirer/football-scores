@@ -43,4 +43,6 @@
     <string name="champions_league_friendly">UEFA Champions League</string>
     <string name="primera_division_friendly">Primera Division</string>
     <string name="bundesliga_friendly">Bundesliga</string>
+    <string name="bundesliga_2_friendly">Bundesliga 2</string>
+    <string name="ligue_1_friendly">Ligue 1</string>
 </resources>
