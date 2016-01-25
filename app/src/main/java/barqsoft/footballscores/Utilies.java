@@ -111,7 +111,10 @@ public class Utilies {
                 // The names come from a quick and dirty python script that just removes non ascii characters.
                 String cleanTeamname = teamname.replaceAll("[^\\x00-\\x7F]", "");
                 // DO NOT include the image extension in the drawable string here!
-                int resourceId = context.getResources().getIdentifier(cleanTeamname.toLowerCase().replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
+                int resourceId = context.getResources().getIdentifier(
+                        cleanTeamname.toLowerCase()
+                                .replace(".", "_")
+                                .replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
                 return resourceId == 0 ? R.drawable.no_icon : resourceId;
         }
     }
