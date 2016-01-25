@@ -46,11 +46,6 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
 
     private final String LOG_TAG = ScoresWidgetRemoteViewsService.class.getSimpleName();
 
-
-
-
-
-
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public class ScoresRemoteViewsFactory implements RemoteViewsFactory {
 

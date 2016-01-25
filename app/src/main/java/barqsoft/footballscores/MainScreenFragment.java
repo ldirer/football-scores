@@ -84,9 +84,13 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
             Log.d(LOG_TAG, String.format("Using savedInstanceState to scroll to position: %d", mSelectedPosition));
         }
         if (mSelectedPosition != -1) {
-            Log.d(LOG_TAG, String.format("Supposedly scrolling to position %d", mSelectedPosition));
-            // TODO: This just scrolls a tiny amount (but does scroll!) and does not quite reach the right item...
-            score_list.smoothScrollToPosition(mSelectedPosition);
+            score_list.post(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(LOG_TAG, String.format("Supposedly scrolling to position %d", mSelectedPosition));
+                    score_list.smoothScrollToPositionFromTop(mSelectedPosition, 0);
+                }
+            });
         }
         return rootView;
     }
@@ -112,7 +116,8 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
             Log.d(LOG_TAG, "Going to enter getAdapterItemPosition");
             mSelectedPosition = getAdapterItemPosition(MainActivity.selected_match_id);
             Log.d(LOG_TAG, String.format("Supposedly scrolling to position %d", mSelectedPosition));
-            score_list.smoothScrollToPosition(mSelectedPosition);
+            // score_list.smoothScrollToPosition(mSelectedPosition); DID NOT WORK. Awesome.
+            score_list.smoothScrollToPositionFromTop(mSelectedPosition, 0);
             mScrolledAlready = true;
         }
         mAdapter.notifyDataSetChanged();
