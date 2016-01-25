@@ -71,21 +71,12 @@ public class Utilies {
     }
 
     public static int getTeamCrestByTeamName(String teamname, Context context) {
-        Log.d("getTeamCrestByTeamName", teamname);
-        // This does not make sense! I would be creating a log file on the device!...
-//        FileHandler teamCrestFileHandler = null;
-//        try {
-//            teamCrestFileHandler = new FileHandler("logTeamCrests");
-//        } catch (IOException e) {
-//            Log.d(LOG_TAG, e.getMessage());
-//        }
-//        teamCrestLogger.addHandler(teamCrestFileHandler);
+//        Log.d("getTeamCrestByTeamName", teamname);
         if (teamname == null) {
             return R.drawable.no_icon;
         }
-        // TODO: Before sub, add all the internet-fetched logos.
         // We remove non ascii characters to match the logos names.
-        // The names come from a quick and dirty python script that just removes non ascii characters.
+        // The names come from a quick and dirty python script that just removes non ascii characters and replaces "-", "." and " " with "_".
         String cleanTeamname = teamname.replaceAll("[^\\x00-\\x7F]", "");
         // DO NOT include the image extension in the drawable string here!
         int resourceId = context.getResources().getIdentifier(
