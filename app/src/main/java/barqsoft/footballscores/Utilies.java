@@ -26,7 +26,7 @@ public class Utilies {
     private static boolean mapInitialized = false;
 
     public static String getLeague(Context context, int league_num) {
-        if(!mapInitialized) {
+        if (!mapInitialized) {
             leagueCodeToName.put(SERIE_A, context.getString(R.string.serie_a_friendly));
             leagueCodeToName.put(PREMIER_LEAGUE, context.getString(R.string.premier_league_friendly));
             leagueCodeToName.put(CHAMPIONS_LEAGUE, context.getString(R.string.champions_league_friendly));
@@ -38,7 +38,7 @@ public class Utilies {
         }
         String leagueName = leagueCodeToName.get(league_num);
         return leagueName == null ? "Not known League Please report" : leagueName;
-        }
+    }
 
     public static String getMatchDay(int match_day, int league_num) {
         if (league_num == CHAMPIONS_LEAGUE) {
@@ -83,40 +83,17 @@ public class Utilies {
         if (teamname == null) {
             return R.drawable.no_icon;
         }
-        switch (teamname) { //This is the set of icons that are currently in the app. Feel free to find and add more
-            //as you go.
-            case "Arsenal London FC":
-                return R.drawable.arsenal;
-            case "Manchester United FC":
-                return R.drawable.manchester_united;
-            case "Swansea City":
-                return R.drawable.swansea_city_afc;
-            case "Leicester City":
-                return R.drawable.leicester_city_fc_hd_logo;
-            case "Everton FC":
-                return R.drawable.everton_fc_logo1;
-            case "West Ham United FC":
-                return R.drawable.west_ham;
-            case "Tottenham Hotspur FC":
-                return R.drawable.tottenham_hotspur;
-            case "West Bromwich Albion":
-                return R.drawable.west_bromwich_albion_hd_logo;
-            case "Sunderland AFC":
-                return R.drawable.sunderland;
-            case "Stoke City FC":
-                return R.drawable.stoke_city;
-            default:
-                // TODO: Before sub, add all the internet-fetched logos.
-                // We remove non ascii characters to match the logos names.
-                // The names come from a quick and dirty python script that just removes non ascii characters.
-                String cleanTeamname = teamname.replaceAll("[^\\x00-\\x7F]", "");
-                // DO NOT include the image extension in the drawable string here!
-                int resourceId = context.getResources().getIdentifier(
-                        cleanTeamname.toLowerCase()
-                                .replace(".", "_")
-                                .replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
-                return resourceId == 0 ? R.drawable.no_icon : resourceId;
-        }
+        // TODO: Before sub, add all the internet-fetched logos.
+        // We remove non ascii characters to match the logos names.
+        // The names come from a quick and dirty python script that just removes non ascii characters.
+        String cleanTeamname = teamname.replaceAll("[^\\x00-\\x7F]", "");
+        // DO NOT include the image extension in the drawable string here!
+        int resourceId = context.getResources().getIdentifier(
+                cleanTeamname.toLowerCase()
+                        .replace("-", "_")
+                        .replace(".", "_")
+                        .replace(" ", "_"), "drawable", context.getApplicationContext().getPackageName());
+        return resourceId == 0 ? R.drawable.no_icon : resourceId;
     }
 
     /**
@@ -127,9 +104,8 @@ public class Utilies {
      */
     public static String[] getFormattedDatesForDatabase(int dateSpan) {
         String[] formattedDates = new String[2];
-        for (int i = 0;i < 2;i+=1)
-        {
-            Date fragmentdate = new Date(System.currentTimeMillis()+((i * 2 * dateSpan - dateSpan)*86400000));
+        for (int i = 0; i < 2; i += 1) {
+            Date fragmentdate = new Date(System.currentTimeMillis() + ((i * 2 * dateSpan - dateSpan) * 86400000));
             SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
             formattedDates[i] = mformat.format(fragmentdate);
         }
