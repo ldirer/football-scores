@@ -7,24 +7,16 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.RemoteViews;
 
-import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
-import barqsoft.footballscores.Utilies;
-import barqsoft.footballscores.ViewHolder;
 import barqsoft.footballscores.service.myFetchService;
 
-// TODO: before sub, add preview image for widget.
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ScoresWidgetProvider extends AppWidgetProvider {
 

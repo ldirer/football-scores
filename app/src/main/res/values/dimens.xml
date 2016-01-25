@@ -10,7 +10,7 @@
     <dimen name="widget_score">15sp</dimen>
     <dimen name="League">15sp</dimen>
     <dimen name="widget_margin">8dp</dimen>
-    <dimen name="min_widget_width">40dp</dimen>
-    <dimen name="min_widget_height">40dp</dimen>
+    <dimen name="min_widget_width">120dp</dimen>
+    <dimen name="min_widget_height">80dp</dimen>
     <dimen name="widget_date_size">10sp</dimen>
 </resources>

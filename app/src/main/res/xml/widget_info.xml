@@ -6,7 +6,7 @@
     android:initialLayout="@layout/widget"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
+    android:previewImage="@drawable/football_widget_preview"
     >
     <!--android:configure="com.example.android.ExampleAppWidgetConfigure"-->
-    <!--android:previewImage="@drawable/preview_widget"-->
 </appwidget-provider>
